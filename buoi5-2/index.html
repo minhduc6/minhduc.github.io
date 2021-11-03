@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .box {
+        display: block;
+        background-color: red;
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        float: left;
+        margin: 5px;
+      }
+
+      .box:hover {
+        transform: scale(0.9);
+        transition-duration: 0.5s;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+
+      .box:active {
+        transform: scale(1.5);
+        transition-duration: 0.5s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <body>
+      <div class="wrap">
+        <h1>JS DOM</h1>
+        <button id="btn">More boxes</button>
+        <h4 id="score">Total box:<span class="points">0</span></h4>
+
+        <div class="boxes"></div>
+      </div>
+    </body>
+
+    <script>
+      // Viết mã ở đây
+      let colors = ["#3498db", "#9b59b6", "#e74c3c", "#2c3e50", "#d35400"];
+      let btnTarget = document.getElementById("btn")
+      let boxes = document.getElementsByClassName("boxes")[0]
+      let spanTarget = document.getElementsByClassName("points")[0]
+      let size = 0
+      btnTarget.addEventListener("click", function () {
+        size +=  5;
+        spanTarget.innerHTML = size 
+        for (let i = 0; i < colors.length; i++) {
+          let newBox = document.createElement("div");
+          newBox.classList.add("box");
+          newBox.style.backgroundColor = colors[i];
+          boxes.appendChild(newBox);
+        }
+        let boxList = document.getElementsByClassName("box");
+        let arrBox = Array.from(boxList);
+        for (let i = 0 ; i < arrBox.length ; i++){
+            arrBox[i].addEventListener('click',function(){
+                boxes.removeChild(arrBox[i])
+                size = size - 1;  
+                spanTarget.innerHTML = size 
+            })
+        }
+      });
+    </script>
+  </body>
+</html>

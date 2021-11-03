@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Practice</title>
+</head>
+<body>
+    <h1>Thực hành DOM</h1>
+    <p>
+        Hey, you're not permitted in there. It's restricted. You'll be deactivated for sure.. Don't call me a mindless
+        philosopher, you overweight glob of grease! Now come out before somebody sees you. Secret mission? What plans?
+        What are you talking about? I'm not getting in there! I'm going to regret this. There goes another one. Hold
+        your fire. There are no life forms. It must have been short-circuited. That's funny, the damage doesn't look as
+        bad from out here. Are you sure this things safe?
+
+        What a piece of junk. She'll make point five beyond the speed of light. She may not look like much, but she's
+        got it where it counts, kid. I've added some special modifications myself. We're a little rushed, so if you'll
+        hurry aboard we'll get out of here. Hello, sir. Which way? All right, men. Load your weapons! Stop that ship!
+        Blast 'em! Chewie, get us out of here! Oh, my. I'd forgotten how much I hate space travel. Run, Luke! Run!
+    </p>
+    <script>
+        // Bài 1: Highlight tất cả các từ có độ dài lớn hơn hoặc bằng 8 ký tự trong đoạn văn (background = "yellow")
+        let pTarget = document.querySelector("body > p")
+        let pString = pTarget.innerHTML
+        let arrString = pString.split(' ')
+        for(let i = 0 ; i < arrString.length ; i++) {
+        
+           if((arrString[i].trim().length ==  8) && ((arrString[i].charAt(arrString[i].length-1) != "?") && (arrString[i].charAt(arrString[i].length-1) != "!") && (arrString[i].charAt(arrString[i].length-1) != ".") && (arrString[i].charAt(arrString[i].length-1) != ",") )) {
+                let x =  arrString[i]
+                arrString[i] = `<span style="color:yellow">${x}</span>` 
+           }
+           else if((arrString[i].trim().length >  8 ) ) {
+                    let x =  arrString[i]
+                    arrString[i] = `<span style="color:yellow">${x}</span>` 
+            }
+        }
+        let p1 =""
+        for(let i = 0 ; i < arrString.length; i++)
+        {
+           p1 += arrString[i] + " ";
+        }
+        let pReplace = document.createElement('p')
+        pReplace.innerHTML = p1
+        document.body.replaceChild(pReplace,pTarget)
+
+
+
+        // bài 2: Thêm link hiển thị text "facebook" link đến trang facebook.com ở sau thẻ p
+         let pTmp = document.querySelector("body > p")
+         pTmp.insertAdjacentHTML("afterend", '<a href="https://www.facebook.com/" target="_blank">Visit Facebook.com!</a>')
+        
+
+        // bài 3. Đếm số từ có trong đoạn văn. Tạo 1 thẻ div để hiển thị số từ
+        let doDaiDoanVan = arrString.length
+        console.log(doDaiDoanVan)
+        
+        let aTarget = document.querySelector("body > a")
+        aTarget.insertAdjacentHTML("afterend", `<div style = 'background-color:red'> so tu cua doan van ${doDaiDoanVan}</div>`)
+
+        // Bài 4: thay thế các ký hiệu ? => 🤔, ! => 😲
+        let pText = pReplace.innerHTML
+       // console.log(pText)
+        let charArr = pText.split('')
+        for(let i = 0 ; i < charArr.length ; i++ ) {
+            if(charArr[i] == '?') { 
+                charArr[i] =`<span>🤔</span>` 
+            }
+            else if(charArr[i] == '!') {
+                charArr[i] =`<span>😲</span>` 
+            }
+        }
+        let p2 = ""
+        for(let i = 0 ; i < charArr.length ; i++ ){
+           p2 += charArr[i]
+        }
+        console.log(p2)
+        let pReplace2 = document.createElement('p')
+        pReplace2.innerHTML = p2
+        document.body.replaceChild(pReplace2,pReplace)
+    </script>
+</body>
+</html>
