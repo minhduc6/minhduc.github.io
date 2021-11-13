@@ -179,21 +179,25 @@ function checkPromocde(arr) {
   let totalMoneyFirst =totalMoney;
   btnCode.addEventListener("click", function () {
     if (input.value == "A") {
+      alert("Bạn Được Giảm Giá 10%");
       liTarget.innerHTML = ``;
       discount = totalMoney * 1.05 * (promotionCode.A * (1 / 100));
       liTarget.innerHTML = `Discount <span>${discount}</span>`;
       totalEl.innerText = convertPrice(totalMoneyFirst * 1.05 - discount);
     } else if (input.value == "B") {
+      alert("Bạn Được Giảm Giá 20%");
       liTarget.innerHTML = ``;
       discount = totalMoney * 1.05 * (promotionCode.B * (1 / 100));
       liTarget.innerHTML = `Discount <span>${discount}</span>`;
       totalEl.innerText = convertPrice(totalMoneyFirst * 1.05 - discount);
     } else if (input.value == "C") {
+      alert("Bạn Được Giảm Giá 30%");
       liTarget.innerHTML = ``;
       discount = totalMoney * 1.05 * (promotionCode.C * (1 / 100));
       liTarget.innerHTML = `Discount <span>${discount}</span>`;
       totalEl.innerText = convertPrice(totalMoneyFirst * 1.05 - discount);
     } else if (input.value == "D") {
+      alert("Bạn Được Giảm Giá 40%");
       liTarget.innerHTML = ``;
       discount = totalMoney * 1.05 * (promotionCode.D * (1 / 100));
       liTarget.innerHTML = `Discount <span>${discount}</span>`;
