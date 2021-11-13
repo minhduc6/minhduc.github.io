@@ -60,7 +60,7 @@ function renderProduct(arr) {
 
   // Tính tổng tiền
   updateTotalMoney(arr);
-  checkPromocde(arr);
+
 
   // Trường hợp giỏ hàng rỗng (products = [])
   if (arr.length == 0) {
@@ -117,6 +117,7 @@ function renderProduct(arr) {
             </li>
         `;
   }
+  checkPromocde(arr)
 }
 
 // Cập nhật số lượng sản phẩm
@@ -136,6 +137,8 @@ function removeProduct(id) {
       products.splice(i, 1);
     }
   }
+  let liTarget = document.getElementById('ID_LI')
+  totalEl.parentElement.parentElement.removeChild(liTarget)
   renderProduct(products);
 }
 
@@ -146,6 +149,8 @@ function changeTotalProduct(id, event) {
       products[i].count = Number(event.target.value);
     }
   }
+  let liTarget = document.getElementById('ID_LI')
+  totalEl.parentElement.parentElement.removeChild(liTarget)
   renderProduct(products);
 }
 
@@ -171,12 +176,14 @@ function checkPromocde(arr) {
   let discount = 0;
   let totalMoney = 0;
   let liTarget = document.createElement("li");
+  liTarget.id = "ID_LI"
   parentTotal.insertBefore(liTarget, totalEl.parentElement);
+  liTarget.innerHTML = ``;
 
   for (let i = 0; i < arr.length; i++) {
     totalMoney += arr[i].count * arr[i].price;
   }
-  let totalMoneyFirst =totalMoney;
+  let totalMoneyFirst = totalMoney;
   btnCode.addEventListener("click", function () {
     if (input.value == "A") {
       alert("Bạn Được Giảm Giá 10%");
@@ -211,6 +218,7 @@ function checkPromocde(arr) {
     }
 
   });
+  
 }
 
 let note  = document.createElement("h3")
