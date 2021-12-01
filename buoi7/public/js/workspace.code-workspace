@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "buoi7",
+			"path": "..\\.."
+		},
+		{
+			"name": "public",
+			"path": "..\\..\\..\\..\\..\\..\\Desktop\\public"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "public"
+	}
+}

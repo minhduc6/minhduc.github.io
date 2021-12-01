@@ -35,6 +35,13 @@ function createTodoAPI(title) {
         status: false,
     });
 }
+function updateTodoAPI(id,title,trangThai){
+    return axios.put(`/todos/${id}`,{
+        id: id,
+        title: title,
+        status: trangThai,
+    })
+}
 function deleteTodoAPI(id){
     return axios({
         method : "delete",
@@ -62,7 +69,7 @@ function renderUI(arr) {
                     <p>${t.title}</p>
                 </div>
                 <div class="option">
-                    <button class="btn btn-update">
+                    <button class="btn btn-update" onclick="popup(${t.id})")>
                         <img src="./img/pencil.svg" alt="icon" />
                     </button>
                     <button class="btn btn-delete" onclick="deleteTodo(${t.id})">
@@ -117,6 +124,19 @@ async function deleteTodo(id) {
         console.log(error);
     }
 }
+async function updateToDo(id,title,status){
+    try {
+        await updateTodoAPI(id,title,status)
+        todos.forEach((todo,index) => {
+            if(todo.id == id) {
+                todo.title = title
+            }
+        })
+        renderUI(todos)
+    } catch (error) {
+       // console.log(error);
+    }
+}
 // Thêm công việc
 btn_add.addEventListener("click", function () {
     let todoTitle = todo_input.value; // Lấy ra nội dung trong ô input
@@ -128,6 +148,37 @@ btn_add.addEventListener("click", function () {
     createTodo(todoTitle)
     todo_input.value = ""
 });
+//Update Job
+let modal = document.querySelector(".popup");
+let closeBtn = document.querySelector(".close-btn");
+let updateBtn = document.getElementById("btn-update");
+let titleUpdate = document.getElementById("todo-inputUpdate");
+console.log(titleUpdate)
+function popup(id){
+      modal.style.display = "block"
+    
+      updateBtn.addEventListener('click',function(){
+       let title = titleUpdate.value;
+       let status = false ;
+       updateToDo(id,title,status)
+       id = 0
+   })
+   titleUpdate.value = ""
+}
+
+
+
+
+
+closeBtn.onclick = function(){
+    modal.style.display = "none"
+}
+
+window.onclick = function(e){
+    if(e.target == modal){
+    modal.style.display = "none"
+}
+}
 
 window.onload = () => {
     getTodos();
